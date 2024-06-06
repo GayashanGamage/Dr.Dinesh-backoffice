@@ -1,5 +1,5 @@
 <template>
-  <div class="level-one-container">
+  <div>
     <router-view></router-view>
   </div>
 </template>
@@ -11,6 +11,7 @@ name: "App";
 <style>
 * {
   font-family: "Spartan", sans-serif;
+  margin: 0;
 }
 html {
   font-size: 10px;

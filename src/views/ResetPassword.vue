@@ -8,13 +8,18 @@
         placeholder="Re ente password"
         class="user-input"
       />
-      <button class="action-button">Change password</button>
+      <button class="action-button" @click="linkToHome">Change password</button>
     </div>
   </div>
 </template>
 
 <script setup>
+import router from "@/router";
 name: "Reset-password";
+
+const linkToHome = () => {
+  router.replace("/home");
+};
 </script>
 
 <style scoped>
@@ -65,8 +70,8 @@ name: "Reset-password";
   border: 0px;
 }
 .action-button:hover {
-  background-color: #595ff3;
   color: #595ff3;
+  background-color: #fff;
   border: 1px solid #595ff3;
 }
 </style>
