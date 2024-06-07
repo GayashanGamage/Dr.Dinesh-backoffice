@@ -4,22 +4,34 @@
       <h1 class="menu-item-header">BACK OFFICE</h1>
     </div>
     <div class="c-level-two-container menu-item">
-      <p class="menu-item-text select-text">Home</p>
+      <router-link class="menu-item-text select-text" to="/office/home"
+        >Home</router-link
+      >
     </div>
     <div class="c-level-two-container menu-item">
-      <p class="menu-item-text">Site info</p>
+      <router-link class="menu-item-text" to="/office/info"
+        >Site info</router-link
+      >
     </div>
     <div class="c-level-two-container menu-item">
-      <p class="menu-item-text">Booking</p>
+      <router-link class="menu-item-text" to="/office/booking"
+        >Booking</router-link
+      >
     </div>
     <div class="c-level-two-container menu-item select">
-      <p class="menu-item-text">Manage timeslot</p>
+      <router-link class="menu-item-text" to="/office/timeslot"
+        >Manage timeslot</router-link
+      >
     </div>
     <div class="c-level-two-container menu-item">
-      <p class="menu-item-text">Client request</p>
+      <router-link class="menu-item-text" to="/office/request"
+        >Client request</router-link
+      >
     </div>
     <div class="c-level-two-container menu-item">
-      <p class="menu-item-text">All client</p>
+      <router-link class="menu-item-text" to="/office/clients"
+        >All client</router-link
+      >
     </div>
     <div class="c-level-two-container log-out-button">
       <p class="log-out-text">Log out</p>
@@ -49,6 +61,7 @@ name: "Sidebar";
   font-weight: 300;
   margin-top: 12px;
   margin-bottom: 12px;
+  text-decoration: none;
 }
 .site-header {
   margin: 68px 68px;

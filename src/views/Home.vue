@@ -30,9 +30,11 @@ name: "Backoffice";
 }
 .content {
   grid-area: content;
-  border: 1px solid black;
-  height: 100vh;
+  height: 94vh;
   margin: 34px 28px 0 0;
+  border-radius: 6px;
+  background-color: #fff;
+  box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.1);
 }
 .level-three-container {
   background-color: #595ff3;

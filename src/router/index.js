@@ -5,6 +5,11 @@ import ResetPassword from "@/views/ResetPassword.vue";
 import { createRouter, createWebHistory } from "vue-router";
 import Home from "@/views/Home.vue";
 import HomeComponent from "@/components/homeComponent.vue";
+import Info from "@/components/Info.vue";
+import AllClient from "@/components/All-client.vue";
+import Booking from "@/components/Booking.vue";
+import ClientRequest from "@/components/Client-request.vue";
+import Timeslot from "@/components/Timeslot.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -30,9 +35,35 @@ const router = createRouter({
       name: "resetPassword",
     },
     {
-      path: "/home",
+      path: "/office",
       component: Home,
-      name: "home",
+      redirect: "office/home",
+      children: [
+        {
+          path: "home",
+          component: HomeComponent,
+        },
+        {
+          path: "info",
+          component: Info,
+        },
+        {
+          path: "booking",
+          component: Booking,
+        },
+        {
+          path: "timeslot",
+          component: Timeslot,
+        },
+        {
+          path: "request",
+          component: ClientRequest,
+        },
+        {
+          path: "clients",
+          component: AllClient,
+        },
+      ],
     },
   ],
 });

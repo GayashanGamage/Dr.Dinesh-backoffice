@@ -46,7 +46,7 @@ const userPassword = ref(null);
 
 const userDetails = () => {
   if (email === userEmail.value && password === userPassword.value) {
-    router.replace("/home");
+    router.replace("/office");
   } else {
     console.log("your credencial is not valied");
   }
