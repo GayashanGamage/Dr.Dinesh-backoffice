@@ -1,6 +1,15 @@
 <template>
   <div class="c2-level-one-container">
-    <p>Booking page</p>
+    <div class="c2-level-two-container">
+      <button><router-link to="all">All</router-link></button>
+      <button>
+        <router-link to="upcomming">Up Comming</router-link>
+      </button>
+      <button><router-link to="today">Today</router-link></button>
+      <button><router-link to="completed">Completed</router-link></button>
+      <button><router-link to="refund">Refund</router-link></button>
+    </div>
+    <router-view></router-view>
   </div>
 </template>
 
@@ -10,9 +19,11 @@ name: "Info";
 
 <style scoped>
 .c2-level-one-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   width: 100%;
+  height: 100%;
+}
+a {
+  text-decoration: none;
+  color: black;
 }
 </style>

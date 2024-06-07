@@ -12,6 +12,11 @@ import ClientRequest from "@/components/Client-request.vue";
 import Timeslot from "@/components/Timeslot.vue";
 import Approved from "@/components/Request/Approved.vue";
 import Pending from "@/components/Request/Pending.vue";
+import All from "@/components/BookingPages/All.vue";
+import Refund from "@/components/BookingPages/Refund.vue";
+import Completed from "@/components/BookingPages/Completed.vue";
+import Upcomming from "@/components/BookingPages/Upcomming.vue";
+import Today from "@/components/BookingPages/Today.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -52,6 +57,29 @@ const router = createRouter({
         {
           path: "booking",
           component: Booking,
+          redirect: "/office/booking/all",
+          children: [
+            {
+              path: "all",
+              component: All,
+            },
+            {
+              path: "upcomming",
+              component: Upcomming,
+            },
+            {
+              path: "today",
+              component: Today,
+            },
+            {
+              path: "completed",
+              component: Completed,
+            },
+            {
+              path: "refund",
+              component: Refund,
+            },
+          ],
         },
         {
           path: "timeslot",
@@ -60,7 +88,7 @@ const router = createRouter({
         {
           path: "request",
           component: ClientRequest,
-          redirect: "request/approved",
+          redirect: "/office/request/approved",
           children: [
             {
               path: "approved",
