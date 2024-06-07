@@ -10,6 +10,8 @@ import AllClient from "@/components/All-client.vue";
 import Booking from "@/components/Booking.vue";
 import ClientRequest from "@/components/Client-request.vue";
 import Timeslot from "@/components/Timeslot.vue";
+import Approved from "@/components/Request/Approved.vue";
+import Pending from "@/components/Request/Pending.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -58,6 +60,17 @@ const router = createRouter({
         {
           path: "request",
           component: ClientRequest,
+          redirect: "request/approved",
+          children: [
+            {
+              path: "approved",
+              component: Approved,
+            },
+            {
+              path: "pending",
+              component: Pending,
+            },
+          ],
         },
         {
           path: "clients",

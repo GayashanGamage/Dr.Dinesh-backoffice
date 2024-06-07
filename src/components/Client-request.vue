@@ -1,6 +1,14 @@
 <template>
   <div class="c3-level-one-container">
-    <p>Client reques page</p>
+    <div class="c3-level-two-container">
+      <button>
+        <router-link to="approved">Pending</router-link>
+      </button>
+      <button>
+        <router-link to="pending">Refunded</router-link>
+      </button>
+    </div>
+    <router-view></router-view>
   </div>
 </template>
 
@@ -10,9 +18,14 @@ name: "Time-slot";
 
 <style scoped>
 .c3-level-one-container {
-  display: flex;
+  /* display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: center; */
   width: 100%;
+  height: 100%;
+}
+a {
+  text-decoration: none;
+  color: black;
 }
 </style>
