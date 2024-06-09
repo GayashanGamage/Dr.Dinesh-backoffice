@@ -45,7 +45,7 @@
     >
       <p class="menu-item-text">All client</p>
     </div>
-    <div class="c-level-two-container log-out-button">
+    <div class="c-level-two-container log-out-button" @click="logout">
       <p class="log-out-text">Log out</p>
     </div>
   </div>
@@ -62,6 +62,10 @@ const selectTab = (tab_link, tab_id) => {
   }
   document.getElementById(tab_id).classList.add("select");
   router.push(tab_link);
+};
+
+const logout = () => {
+  router.replace("/");
 };
 </script>
 
@@ -94,12 +98,17 @@ const selectTab = (tab_link, tab_id) => {
   line-height: normal;
 }
 .log-out-button {
-  margin: 38px 68px;
+  margin: 68px 50px;
+  border-radius: 4px;
+}
+.log-out-button:hover {
+  background-color: rgba(255, 247, 252, 0.3);
 }
 .log-out-text {
   font-weight: 500;
   font-size: 2.4rem;
   color: #fff;
+  margin: 10px 18px;
 }
 .select {
   background: rgba(255, 247, 252, 0.3);
