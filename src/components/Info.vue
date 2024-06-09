@@ -31,7 +31,7 @@ name: "Info";
   flex-direction: column;
 }
 .c4-level-two-container {
-  margin: 70px 65px;
+  margin: 76px 32px;
   width: 800px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
