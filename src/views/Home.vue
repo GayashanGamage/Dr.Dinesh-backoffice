@@ -30,7 +30,8 @@ name: "Backoffice";
 }
 .content {
   grid-area: content;
-  height: 94vh;
+  min-height: 94vh;
+  max-height: auto;
   margin: 34px 28px 0 0;
   border-radius: 6px;
   background-color: #fff;
