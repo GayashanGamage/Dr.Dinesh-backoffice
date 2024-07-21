@@ -105,4 +105,23 @@ const router = createRouter({
   ],
 });
 
+// check avilability of JWT token and username of the user and redirect according to that
+router.beforeEach((to, from) => {
+  let authCookie = document.cookie.includes("admin");
+  let authName = localStorage.getItem("username");
+  let untrackedRoute = [
+    "/",
+    "/foget-password",
+    "/confirm-code",
+    "/resetpassword",
+  ];
+
+  if (
+    !untrackedRoute.includes(to.path) &&
+    (authCookie == false || authName === null)
+  ) {
+    return { path: "/" };
+  }
+});
+
 export default router;
