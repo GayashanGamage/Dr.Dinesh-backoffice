@@ -53,6 +53,7 @@
 
 <script setup>
 import router from "@/router";
+import { ref } from "vue";
 name: "Sidebar";
 
 const selectTab = (tab_link, tab_id) => {
@@ -65,6 +66,18 @@ const selectTab = (tab_link, tab_id) => {
 };
 
 const logout = () => {
+  let token = ref(null);
+
+  const allCookies = document.cookie.split("; ");
+  for (let i = 0; i < allCookies.length; i++) {
+    const selectedCookie = allCookies[i].split("=");
+    if (selectedCookie[0] === "admin") {
+      token = selectedCookie[1];
+    }
+  }
+  document.cookie =
+    "admin =" + token.value + "; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+  localStorage.removeItem("username");
   router.replace("/");
 };
 </script>

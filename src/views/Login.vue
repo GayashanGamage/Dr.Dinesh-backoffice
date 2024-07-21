@@ -7,21 +7,19 @@
       <div class="level-three-container">
         <input
           type="text"
-          placeholder="E-mail"
+          placeholder="user name"
           class="user-input"
-          v-model="userEmail"
+          v-model="Username"
         />
         <input
           type="password"
           placeholder="Password"
           class="user-input"
-          v-model="userPassword"
+          v-model="Password"
         />
       </div>
       <div class="level-three-container">
-        <button class="action-button login-button" @click="userDetails()">
-          Login
-        </button>
+        <button class="action-button login-button" @click="login">Login</button>
         <p class="action-button forget-password" @click="forgetPassword">
           Forget password ?
         </p>
@@ -32,29 +30,87 @@
 
 <script setup>
 import router from "@/router";
-import { useCounterStore } from "@/stores/counter";
-import { ref } from "vue";
+import axios, { all } from "axios";
+import { onBeforeMount, ref } from "vue";
+import { useToast } from "vue-toast-notification";
+import "vue-toast-notification/dist/theme-sugar.css";
 name: "Login";
 
-const userStor = useCounterStore();
+const toast = useToast();
 
-const email = userStor.email;
-const password = userStor.password;
+const Username = ref(null);
+const Password = ref(null);
 
-const userEmail = ref(null);
-const userPassword = ref(null);
-
-const userDetails = () => {
-  if (email === userEmail.value && password === userPassword.value) {
-    router.replace("/office");
+const login = () => {
+  if (Username.value === null || Username.value === "") {
+    toast.info("Fill Username filed");
+  } else if (Password.value === null || Password.value === "") {
+    toast.info("Fill Password filed");
   } else {
-    console.log("your credencial is not valied");
+    axios
+      .post(`${import.meta.env.VITE_site}/admin-login`, {
+        username: Username.value,
+        password: Password.value,
+      })
+      .then(function (response) {
+        if (response.status === 200) {
+          localStorage.setItem("username", Username.value);
+          document.cookie = "admin =" + response.data.token + "; path=/;";
+          router.replace("/office");
+        }
+      })
+      .catch(function (error) {
+        if (error.response.status === 400) {
+          toast.error("Details Not Mached");
+        } else if (error.response.status === 404) {
+          toast.error("Invalied Username");
+        }
+      });
   }
 };
 
 const forgetPassword = () => {
   router.push("/foget-password");
 };
+
+// #TODO: find correctness of this fuction
+onBeforeMount(function () {
+  let token = ref(null);
+  let UserName = localStorage.getItem("username");
+
+  const allCookies = document.cookie.split("; ");
+  for (let i = 0; i < allCookies.length; i++) {
+    const selectedCookie = allCookies[i].split("=");
+    if (selectedCookie[0] === "admin") {
+      token = selectedCookie[1];
+    }
+  }
+  if (token != null && UserName != null) {
+    axios
+      .post(
+        `${import.meta.env.VITE_site}/admin-auth`,
+        {
+          username: UserName,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then(function (response) {
+        if (response.status === 200) {
+          router.replace("/office");
+        }
+      })
+      .catch(function (error) {
+        if (error.status === 401) {
+          localStorage.removeItem("username");
+        }
+      });
+  }
+});
 </script>
 
 <style scoped>
